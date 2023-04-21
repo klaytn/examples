@@ -36,9 +36,7 @@ const providerOptions = {
 function App() {
   
   const [provider, setProvider] = useState();
-  // const [library, setLibrary] = useState();
   const [account, setAccount] = useState();
-  // const [balance, setBalance] = useState();
   const [chainId, setChainId] = useState();
   const [signedMessage, setSignedMessage] = useState();
   const [txHash, setTxHash] = useState();
@@ -88,11 +86,8 @@ function App() {
       // setLibrary(ethersProvider);
       if (accounts) setAccount(accounts[0].address);
 
-      // const balance = ethers.formatEther(
-      //   await web3ModalProvider.getBalance(accounts[0].address) // Balance is in wei
-      // );
       setChainId(network.chainId.toString());
-      // setBalance(balance);
+
     } catch (error) {
         console.log(error);
     }
@@ -101,7 +96,6 @@ function App() {
   const refreshState = () => {
     setAccount();
     setChainId();
-    // setBalance();
     setSignedMessage();
     setTxHash();
     setContractMessage();
@@ -153,7 +147,6 @@ function App() {
         method: "personal_sign",
         params: [message, account]
       });
-      // setSignedMessage(message);
       setSignedMessage(signature);
       console.log(signature);
     } catch (error) {

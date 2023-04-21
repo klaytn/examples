@@ -58,7 +58,6 @@ function App() {
 
 
   const [provider, setProvider] = useState();
-  // const [library, setLibrary] = useState();
   const [account, setAccount] = useState();
   const [chainId, setChainId] = useState();
   const [txHash, setTxHash] = useState();
@@ -95,8 +94,8 @@ function App() {
   const switchNetwork = async () => {
     await onboard.setChain({ chainId: toHex(1001) });
 
-    // Testnet = 0x3e9 
-    // Mainnet = 0x2019 
+    // Testnet = 0x3e9 = 1001
+    // Mainnet = 0x2019 = 8217
   };
 
   const sendKlay = async () => {
