@@ -24,15 +24,16 @@ describe("Token contract", function () {
   // Network to that snapshot in every test.
   async function deployTokenFixture() {
     // Get the ContractFactory and Signers here.
-    const sbt = await ethers.getContractFactory("SoulBoundToken");
+    // const sbt = await ethers.getContractFactory("SoulBoundToken");
     const [owner, addr1, addr2] = await ethers.getSigners();
 
-    // To deploy our contract, we just have to call Token.deploy() and await
-    // its deployed() method, which happens onces its transaction has been
+    // To deploy our contract, we just have to call ethers.deployContract() and await
+    // its waitForDeployment() method, which happens onces its transaction has been
     // mined.
-    const sbtContract = await sbt.deploy();
 
-    await sbtContract.deployed();
+    const sbtContract = await ethers.deployContract("SoulBoundToken");
+
+    await sbtContract.waitForDeployment();
 
     // Fixtures can return anything you consider useful for your tests
     return { sbtContract, owner, addr1, addr2 };
@@ -79,6 +80,7 @@ describe("Token contract", function () {
       0 
   )).to.be.reverted;
 });
+
 
 });
 

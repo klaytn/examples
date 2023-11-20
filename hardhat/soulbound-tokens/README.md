@@ -15,18 +15,18 @@ Change `.env.sample` to `.env`
 
 ### Deploy scripts
 ```bash
-npx hardhat run scripts/sbtDeploy.ts --network baobab
+npx hardhat run scripts/sbtDeploy.js --network baobab
 ```
 
 ### Run Test
 
 ```bash
-npx hardhat test test/sbtTest.ts
+npx hardhat test test/sbtTest.js
 ```
 
 ### Hardhat Forking
 
 ```bash
 npx hardhat node --fork <YOUR ARCHIVE NODE URL>
-npx hardhat node --fork https://cypress.fautor.app/archive
+npx hardhat node --fork https://archive-en.cypress.klaytn.net
 ```
