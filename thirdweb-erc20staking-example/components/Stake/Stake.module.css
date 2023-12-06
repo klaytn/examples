@@ -1,0 +1,33 @@
+.stakeCenterText{
+    text-align: center;
+}
+
+.stakeCenter{
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.stakeContentCenter {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.stakeForm {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-content: center;
+}
+
+.unstakeForm {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    align-content: center;
+}
