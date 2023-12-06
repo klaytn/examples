@@ -1,0 +1,21 @@
+.stakeTokenCard {
+    width: 250px;
+    box-shadow: 0px 8px 12px rgba(255, 255, 255, 0.182);
+    border-radius: 18px;
+    background-color: white;
+    height: 150px;
+    padding: 5px 12px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.stakeTokenCard:hover{
+    color: rgba(191, 8, 8, 0.859)
+}
+
+.stakeTokenBalance {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
