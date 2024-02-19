@@ -59,7 +59,7 @@ const sendKlay = async () => {
       const signer = await ethersProvider.getSigner();
       
       // Submit transaction to the blockchain and wait for it to be mined
-      const tx = await (await signer).sendTransaction({
+      const tx = await signer.sendTransaction({
         to: destination,
         value: ethers.parseEther("0.1"),
         maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
@@ -279,39 +279,43 @@ const writeToContract = async (e) => {
 
 }
 
-
-  return (
-      <div className="App flex flex-row justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
-              <h2 className="my-5 text-lg">Connect your Klaytn dApp with <span className="logoTextGradient">Particle Network</span> </h2>
-              <div>
-                  <ConnectButton className="bg-rose-800 rounded-full p-3 text-center mt-2 cursor-pointer text-white" />
-              </div>
-              <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={getUserInfo}>Get UserInfo</button>  
-              <form onSubmit={signMessage} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
-                  <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="message" placeholder="Set message" required/>
-                  <input className="mt-2 bg-rose-600  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Sign Message"/>
-              </form> 
-              <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={deployContract}>Deploy pre-built storage contract</button>  
-              <button className="bg-rose-500 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={sendKlay}>Send KLAY</button> 
-              <form onSubmit={writeToContract} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
-                  <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="store_value" placeholder="Set contract value" required/>
-                  <input className="mt-2 bg-rose-400  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Store"/>
-              </form> 
-              <button className="bg-rose-300 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={readFromContract}>Read From Contract</button>  
+return (
+  <div className="App flex flex-col justify-center p-8">
+      <div className="flex flex-col">
+          <div className='flex flex-row justify-between items-center gap-4'>
+            <h2 className="my-5 text-lg">Connect your Klaytn dApp with <br/> <span className="logoTextGradient">Particle Network</span> </h2>
+            <div>
+                <ConnectButton className="bg-rose-800 rounded-full p-3 text-center mt-2 cursor-pointer text-white" />
+            </div>
           </div>
 
-          <div className="flex flex-col justify-center items-center">
-              <div>Wallet Address: ${truncateAddress(address)} Balance: ${balance}</div>
-              <p className="p-3 whitespace-normal"> { userData ? `User Email: ${userData.email}, User Name: ${userData.name}` :  ""} </p>
-              <div>SignedMessage: ${signedMessage}</div>
-              <p className="p-3  whitespace-normal">Contract Address: {contractAddress ? contractAddress : ''} </p>
-              <p className="p-3 whitespace-normal">Send-Klay Tx Hash :  {txHash ? <a href={`https://baobab.scope.klaytn.com/tx/${txHash}`} target="_blank" className="list-none, text-sky-400 cursor-pointer">Klaytnscope</a> :  '' } </p>
-              <div>Write-to-contract Tx Hash: ${setContractTx}</div>
-              <div>Read-from-contract Message: ${contractMessage}</div>
-          </div>
+          <div className='flex flex-row gap-5 justify-center items-center mt-10'>
+            <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={getUserInfo}>Get UserInfo</button>  
+            <form onSubmit={signMessage} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
+                <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="message" placeholder="Set message" required/>
+                <input className="mt-2 bg-rose-600  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Sign Message"/>
+            </form> 
+            <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={deployContract}>Deploy pre-built storage contract</button>  
+            <button className="bg-rose-500 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={sendKlay}>Send KLAY</button> 
+            <form onSubmit={writeToContract} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
+                <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="store_value" placeholder="Set contract value" required/>
+                <input className="mt-2 bg-rose-400  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Store"/>
+            </form> 
+            <button className="bg-rose-300 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={readFromContract}>Read From Contract</button> 
+          </div> 
       </div>
-  );
+
+      <div className="flex flex-col justify-center items-center mt-20">
+          {/* <div>Wallet Address: ${truncateAddress(address)} Balance: ${balance}</div> */}
+          <p className="p-3 whitespace-normal"> { userData ? `User Email: ${userData.google_email} , User Address: ${userData.wallets[0].public_address}` :  ""} </p>
+          <div>SignedMessage: ${signedMessage}</div>
+          <p className="p-3  whitespace-normal">Contract Address: {contractAddress ? contractAddress : ''} </p>
+          <p className="p-3 whitespace-normal">Send-Klay Tx Hash :  {txHash ? <a href={`https://baobab.scope.klaytn.com/tx/${txHash}`} target="_blank" className="list-none, text-sky-400 cursor-pointer">Klaytnscope</a> :  '' } </p>
+          <div>Write-to-contract Tx Hash: {contractTx}</div>
+          <div>Read-from-contract Message: {contractMessage}</div>
+      </div>
+  </div>
+);
 
 }
 
