@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ModalProvider } from '@particle-network/connectkit';
 import '@particle-network/connectkit/dist/index.css';
-import { Klaytn } from '@particle-network/chains';
+import { Klaytn, KlaytnTestnet} from '@particle-network/chains';
 import './index.css';
 import App from './App';
 
@@ -14,10 +14,10 @@ root.render(
                 projectId: 'replace with your projectId',
                 clientKey: 'replace with your clientKey',
                 appId: 'replace with your appId',
-                chains: [Klaytn],
+                chains: [KlaytnTestnet],
                 wallet: {
                     visible: true,
-                    supportChains: [Klaytn],
+                    supportChains: [Klaytn, KlaytnTestnet],
                     customStyle: {},
                 },
                 promptSettingConfig: {
