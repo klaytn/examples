@@ -14,10 +14,10 @@ root.render(
                 projectId: 'replace with your projectId',
                 clientKey: 'replace with your clientKey',
                 appId: 'replace with your appId',
-                chains: [KlaytnTestnet],
+                chains: [KlaytnTestnet, Klaytn],
                 wallet: {
                     visible: true,
-                    supportChains: [Klaytn, KlaytnTestnet],
+                    supportChains: [KlaytnTestnet, Klaytn],
                     customStyle: {},
                 },
                 promptSettingConfig: {

@@ -1,51 +1,54 @@
 import React, { useState } from 'react';
 import { ethers, ContractFactory } from 'ethers';
-import { useParticleProvider, useParticleConnect, ConnectButton } from '@particle-network/connectkit';
+import { useParticleProvider, ConnectButton, useParticleConnect } from '@particle-network/connectkit';
 import '@particle-network/connectkit/dist/index.css';
 import { getUserInfo as getParticleUserInfo } from '@particle-network/auth-core';
 
 function App() {
 
   const provider = useParticleProvider();
-  const { disconnect: disconnectWallet } = useParticleConnect();
-  const [address, setAddress] = useState("");
-  const [balance, setBalance] = useState("");
-  const [userData, setUserData] = useState({});
+
+  const { disconnect } = useParticleConnect();
+
+  const [balance, setBalance] = useState();
+  const [address, setAddress] = useState();
+  const [userData, setUserSocialData] = useState({});
   const [signedMessage, setSignedMessage] = useState("");
   const [txHash, setTxHash] = useState("");
-  const [contractAddress, setContractAddress] = useState(null);
+  const [contractAddress, setContractAddress] = useState("");
   const [contractTx, setContractTx] = useState("");
   const [contractMessage, setContractMessage] = useState("");
 
-const connectWallet = async () => {
-    const ethersProvider = new ethers.BrowserProvider(provider);
-    const signer = await ethersProvider.getSigner();
-    const address = await signer.getAddress();
-    const balance = ethers.utils.formatEther(await ethersProvider.getBalance(address));
-    setAddress(address);
-    setBalance(balance);
-  };
-
-const disconnect = async () => {
-  await disconnectWallet();
-  refreshState();
-}
-
-const refreshState = () => {
-  setAddress();
-  setBalance();
-  setTxHash();
-  setSignedMessage();
-  setUserData();
-  setContractMessage();
-  setContractAddress();
-  setContractTx();
-}
-
-  const getUserInfo = async () => {
+  const getUserSocialInfo = async () => {
       const userInfo = getParticleUserInfo();
-      setUserData(userInfo);
+      console.log(userInfo);
+      setUserSocialData(userInfo);
   };
+
+  const getWalletAndBalance = async() => {
+    if (!provider) {
+      console.log("provider not initialized yet");
+      return;
+    }
+    // this guide uses ethers version 6.3.0.
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      // for ethers version below 6.3.0.
+      // const provider = new ethers.providers.Web3Provider(web3authProvider);
+
+  
+      const signer = await ethersProvider.getSigner();
+  
+      // Get user's Ethereum public address
+      const address = signer.address;
+  
+      // Get user's balance in ether
+      const balance = ethers.formatEther(
+        await ethersProvider.getBalance(address) // balance is in wei
+      );
+  
+      setAddress(address);
+      setBalance(balance);
+}
 
 const sendKlay = async () => {
   if (!provider) {
@@ -279,43 +282,63 @@ const writeToContract = async (e) => {
 
 }
 
-return (
-  <div className="App flex flex-col justify-center p-8">
-      <div className="flex flex-col">
-          <div className='flex flex-row justify-between items-center gap-4'>
-            <h2 className="my-5 text-lg">Connect your Klaytn dApp with <br/> <span className="logoTextGradient">Particle Network</span> </h2>
-            <div>
-                <ConnectButton className="bg-rose-800 rounded-full p-3 text-center mt-2 cursor-pointer text-white" />
-            </div>
+const refreshState = () => {
+  setAddress("");
+  setBalance("");
+  setUserSocialData({});
+  setSignedMessage("");
+  setTxHash("");
+  setContractAddress("");
+  setContractTx("");
+  setContractMessage("");
+// make sure to add every other useState modifier function declared here.
+}
+
+const disconnectUser = async () => {
+  await disconnect();
+  refreshState();
+}
+
+
+  return (
+      <div className="App flex flex-col justify-center p-8">
+          <div className="flex flex-col">
+              <div className='flex flex-row justify-between items-center gap-4'>
+                <h2 className="my-5 text-lg">Connect your Klaytn dApp with <br/> <span className="logoTextGradient">Particle Network</span> </h2>
+                <div>
+                    <ConnectButton className="bg-rose-800 rounded-full p-3 text-center mt-2 cursor-pointer text-white" />
+                </div>
+              </div>
+
+              <div className='flex flex-row gap-5 justify-center items-center mt-10'>
+                <button className="bg-rose-700 text-white  p-3 text-center mt-2 cursor-pointer" onClick={getWalletAndBalance}>Get Wallet Account and Balance</button>  
+                <button className="bg-rose-700 text-white  p-3 text-center mt-2 cursor-pointer" onClick={getUserSocialInfo}>Get User Social Info</button>  
+                <form onSubmit={signMessage} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
+                    <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="message" placeholder="Set message" required/>
+                    <input className="mt-2 bg-rose-600  w-full  text-white cursor-pointer p-3 text-center" type="submit" value="Sign Message"/>
+                </form> 
+                <button className="bg-rose-700 text-white p-3 text-center mt-2 cursor-pointer" onClick={deployContract}>Deploy pre-built storage contract</button>  
+                <button className="bg-rose-500 text-white p-3 text-center mt-2 cursor-pointer" onClick={sendKlay}>Send KLAY</button> 
+                <form onSubmit={writeToContract} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
+                    <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="store_value" placeholder="Set contract value" required/>
+                    <input className="mt-2 bg-rose-400  w-full text-white cursor-pointer p-3 text-center" type="submit" value="Store"/>
+                </form> 
+                <button className="bg-rose-300 text-white p-3 text-center mt-2 cursor-pointer" onClick={readFromContract}>Read From Contract</button> 
+                <button className="bg-rose-800 text-white p-3 text-center mt-2 cursor-pointer" onClick={disconnectUser}>Disconnect</button> 
+              </div> 
           </div>
 
-          <div className='flex flex-row gap-5 justify-center items-center mt-10'>
-            <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={getUserInfo}>Get UserInfo</button>  
-            <form onSubmit={signMessage} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
-                <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="message" placeholder="Set message" required/>
-                <input className="mt-2 bg-rose-600  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Sign Message"/>
-            </form> 
-            <button className="bg-rose-700 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={deployContract}>Deploy pre-built storage contract</button>  
-            <button className="bg-rose-500 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={sendKlay}>Send KLAY</button> 
-            <form onSubmit={writeToContract} className="border-2 p-5 flex flex-col justify-center items-center mt-3">
-                <input className="p-3 border-x-2 rounded-md outline-none" type="text" name="store_value" placeholder="Set contract value" required/>
-                <input className="mt-2 bg-rose-400  w-full rounded-lg text-white cursor-pointer p-3 text-center" type="submit" value="Store"/>
-            </form> 
-            <button className="bg-rose-300 text-white rounded-full p-3 text-center mt-2 cursor-pointer" onClick={readFromContract}>Read From Contract</button> 
-          </div> 
+          <div className="flex flex-col justify-center items-center mt-20">
+              <div>Wallet Address: ${address} Balance: ${balance}</div>
+              <p className="p-3 whitespace-normal"> { userData ? `User Email: ${userData.google_email}` :  ""} </p>
+              <div>SignedMessage: ${signedMessage}</div>
+              <p className="p-3  whitespace-normal">Contract Address: {contractAddress ? contractAddress : ''} </p>
+              <p className="p-3 whitespace-normal">Send-Klay Tx Hash :  {txHash ? <a href={`https://baobab.scope.klaytn.com/tx/${txHash}`} target="_blank" className="list-none, text-sky-400 cursor-pointer">Klaytnscope</a> :  '' } </p>
+              <div>Write-to-contract Tx Hash: {contractTx}</div>
+              <div>Read-from-contract Message: {contractMessage}</div>
+          </div>
       </div>
-
-      <div className="flex flex-col justify-center items-center mt-20">
-          {/* <div>Wallet Address: ${truncateAddress(address)} Balance: ${balance}</div> */}
-          <p className="p-3 whitespace-normal"> { userData ? `User Email: ${userData.google_email} , User Address: ${userData.wallets[0].public_address}` :  ""} </p>
-          <div>SignedMessage: ${signedMessage}</div>
-          <p className="p-3  whitespace-normal">Contract Address: {contractAddress ? contractAddress : ''} </p>
-          <p className="p-3 whitespace-normal">Send-Klay Tx Hash :  {txHash ? <a href={`https://baobab.scope.klaytn.com/tx/${txHash}`} target="_blank" className="list-none, text-sky-400 cursor-pointer">Klaytnscope</a> :  '' } </p>
-          <div>Write-to-contract Tx Hash: {contractTx}</div>
-          <div>Read-from-contract Message: {contractMessage}</div>
-      </div>
-  </div>
-);
+  );
 
 }
 
