@@ -1,0 +1,516 @@
+.Nav {
+  width: 100%;
+  height: 75px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid #e1e1e1
+}
+
+.Nav__inner {
+  max-width: 935px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.Nav__logo {
+  width: 180px
+}
+
+.Nav__logo img {
+  width: 100%
+}
+
+.Nav__network {
+  padding: 4px 15px;
+  border: 1px solid #4f473e;
+  border-radius: 20px;
+  font-size: 18px;
+  color: #0e0d0c;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.Nav__network--loading {
+  color: #999;
+  border-color: #999
+}
+
+.Nav__network--error {
+  color: #f54137;
+  border-color: #f54137
+}
+
+.Nav__network span {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 10px
+}
+
+.WalletInfo {
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e1e1e1
+}
+
+.WalletInfo__title {
+  margin-bottom: 15px
+}
+
+.WalletInfo__infoBox {
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  background-color: #fff
+}
+
+.WalletInfo__info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 12px 18px
+}
+
+.WalletInfo__info:first-child {
+  width: 60%;
+  border-right: 1px solid #e1e1e1
+}
+
+.WalletInfo__label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 3px
+}
+
+.WalletInfo__balance {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: calc(100% - 35px);
+  vertical-align: bottom
+}
+
+.WalletInfo__unit {
+  display: inline-block;
+  width: 35px;
+  padding-left: 5px;
+  text-align: right
+}
+
+.WalletInfo__faucet {
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+  padding-right: 10px
+}
+
+.WalletInfo__link {
+  display: inline-block;
+  font-weight: 700;
+  margin-left: 8px;
+  cursor: pointer
+}
+
+.WalletInfo__link:hover {
+  text-decoration: underline
+}
+
+.Dropdown {
+  position: relative;
+  text-align: left;
+  color: #999;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: GoogleSans;
+  font-weight: 700
+}
+
+.Dropdown__title {
+  position: relative;
+  color: #4f473e;
+  text-align: center;
+  font-size: 16px;
+  padding: 15px 24px 14px;
+  border-radius: 3px;
+  border: 1px solid #e1e1e1;
+  background-color: #fff
+}
+
+.Dropdown__title:after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: 50%/contain no-repeat url(/images/icon-downArrow.svg)
+}
+
+.Dropdown--active .Dropdown__title:after {
+  background: 50%/contain no-repeat url(/images/icon-upArrow.svg)
+}
+
+.Dropdown__list {
+  position: absolute;
+  padding: 12px 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .08);
+  width: 100%;
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+  z-index: 10
+}
+
+.Dropdown__listItem {
+  text-align: left;
+  padding: 16px 24px 15px
+}
+
+.Dropdown__listItem:hover {
+  color: #4f473e;
+  background-color: #e1e1e1
+}
+
+.Dropdown__listItem:nth-child(4),
+.Dropdown__listItem:nth-child(6),
+.Dropdown__listItem:nth-child(9),
+.Dropdown__listItem:nth-child(12),
+.Dropdown__listItem:nth-child(16),
+.Dropdown__listItem:nth-child(19),
+.Dropdown__listItem:nth-child(22),
+.Dropdown__listItem:nth-child(23) {
+  border-top: 1px solid #e1e1e1
+}
+
+.Dropdown__listItem--white {
+  color: #999;
+  text-align: center
+}
+
+.Dropdown__listItem--white:hover {
+  background-color: #999
+}
+
+.Input {
+  position: relative;
+  margin-bottom: 10px
+}
+
+.Input__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #999;
+  margin-bottom: 8px
+}
+
+.Input__input {
+  color: #000;
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid #e1e1e1;
+  padding: 22px 24px;
+  border-radius: 5px
+}
+
+.Input__input::placeholder {
+  color: #ccc
+}
+
+.Input__input--err {
+  border-color: #f54137
+}
+
+.Input__input--readOnly {
+  color: #ccc
+}
+
+.Input__err {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  color: #f54137
+}
+
+.Button {
+  -webkit-appearance: none;
+  width: 100%;
+  background-color: #4f473e;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 23px;
+  cursor: pointer;
+  outline: none
+}
+
+.Button:active,
+.Button:hover {
+  background-color: #4f473e;
+  color: #fff
+}
+
+.Message {
+  font-size: 12px;
+  line-height: 18px;
+  font-family: RobotoMono;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 0;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #13141f;
+  word-break: break-all;
+  color: #fff
+}
+
+.Message--error .Message__status {
+  color: #f54137;
+  background-image: url(/images/ico-error.svg)
+}
+
+.Message--error .Message__message {
+  color: #f54137
+}
+
+.Message--txHash .Message__status {
+  padding-top: 0;
+  color: #f5a60a;
+  background-image: none
+}
+
+.Message--txHash .Message__status .Message__message {
+  color: #f5a60a
+}
+
+.Message--receipt .Message__status {
+  background-image: url(/images/ico-receipt.svg)
+}
+
+.Message--rawTransaction,
+.Message--signedMessage {
+  margin-top: 20px
+}
+
+.Message--rawTransaction .Message__status,
+.Message--signedMessage .Message__status {
+  padding-top: 25px;
+  background-size: 22px 22px;
+  background-image: url(/images/icon-tx.svg)
+}
+
+.Message__status {
+  display: inline-block;
+  width: 80px;
+  padding-top: 18px;
+  line-height: 1.1;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 14px 14px;
+  text-align: center;
+  font-weight: 700;
+  color: #fff
+}
+
+.Message__message {
+  display: inline-block;
+  width: calc(100% - 80px);
+  max-height: 150px;
+  overflow: scroll;
+  font-size: 14px;
+  color: #fff
+}
+
+.TxResult {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px dashed #ccc
+}
+
+.CodeBlockExample {
+  padding: 20px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px
+}
+
+.CodeBlockExample h3 {
+  color: #707070;
+  margin-bottom: 15px
+}
+
+.CodeBlockExample p {
+  color: #999;
+  margin-bottom: 10px
+}
+
+.CodeBlockExample__code {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  background-color: #eaeaea;
+  border-radius: 5px;
+  word-break: break-all;
+  overflow: scroll
+}
+
+.Section {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px dashed #ccc
+}
+
+.KlaytnPage {
+  width: 100%;
+  height: 100%
+}
+
+.KlaytnPage__main {
+  width: 100%;
+  min-height: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 10px
+}
+
+.KlaytnPage__main h3 {
+  margin-bottom: 15px
+}
+
+.KlaytnPage__content {
+  padding: 40px 0
+}
+
+.KlaytnPage__txExample {
+  padding: 20px
+}
+
+.KlaytnPage__txExampleTitle {
+  padding-bottom: 30px
+}
+
+.KlaytnPage__dropdown {
+  margin-bottom: 20px
+}
+
+.App {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  min-width: 414px;
+  min-height: 100%
+}
+
+#root,
+body,
+html {
+  height: 100%
+}
+
+html {
+  font-size: 10px
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font-family: SFUIText, Apple SD Gothic Neo, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+body *,
+body :after,
+body :before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+body a {
+  color: inherit;
+  text-decoration: none
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p {
+  margin: 0
+}
+
+body button,
+body input,
+body select,
+body textarea {
+  font-family: unset
+}
+
+body button {
+  padding: unset;
+  background-color: unset;
+  border: unset
+}
+
+body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+@media only screen   
+and (min-device-width : 768px)   
+and (max-device-width : 1920px)  
+{
+	.Nav__network {	
+	  border-radius: 12px !important;	
+	  font-size: 12px !important;		
+	}
+
+	.WalletInfo__infoBox {	
+	  font-size: 14px !important;	
+	}
+
+	.WalletInfo__label {	
+	  font-size: 12px !important;		
+	}
+}  
+
+@media only screen   
+and (min-width: 1920px)  
+{
+	.Nav__network {	
+	  border-radius: 20px !important;	
+	  font-size: 18px !important;	
+	}
+
+	.WalletInfo__infoBox {	
+	  font-size: 18px !important;	
+	}
+
+	.WalletInfo__label {	
+	  font-size: 16px !important;	
+	}
+} 

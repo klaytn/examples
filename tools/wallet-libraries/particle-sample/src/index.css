@@ -1,0 +1,16 @@
+* html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+  }
+  
+  .logoTextGradient {
+    font-size: 50px;
+    background: -webkit-linear-gradient(#850000, #D30168);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;

@@ -1,0 +1,20 @@
+{
+  "name": "feedelegation",
+  "version": "1.0.0",
+  "description": "Steps to run the application\r `cd rolebasedaccountupdate`",
+  "scripts": {
+    "start": "concurrently \"yarn workspace rbau-be start\" \"yarn workspace rbau-fe dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "rbau-be",
+    "rbau-fe"
+  ],
+  "dependencies": {
+    "concurrently": "^7.5.0",
+    "workspaces": "^0.1.0"
+  }
+}

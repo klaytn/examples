@@ -1,0 +1,20 @@
+{
+  "name": "sign",
+  "version": "1.0.0",
+  "description": "Steps to run the application\r `cd sign`",
+  "scripts": {
+    "start": "concurrently \"yarn workspace signature-be start\" \"yarn workspace signature-fe dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "signature-be",
+    "signature-fe"
+  ],
+  "dependencies": {
+    "concurrently": "^7.5.0",
+    "workspaces": "^0.1.0"
+  }
+}

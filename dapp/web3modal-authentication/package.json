@@ -1,0 +1,21 @@
+{
+    "name": "authenticate",
+    "version": "1.0.0",
+    "description": "Steps to run the application\r `cd authenticate`",
+    "scripts": {
+      "start": "concurrently \"yarn workspace authentication-be start\" \"yarn workspace authentication-fe dev\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "private": true,
+    "workspaces": [
+      "authentication-be",
+      "authentication-fe"
+    ],
+    "dependencies": {
+      "concurrently": "^7.5.0",
+      "workspaces": "^0.1.0"
+    }
+  }
+  
