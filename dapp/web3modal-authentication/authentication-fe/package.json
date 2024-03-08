@@ -1,0 +1,29 @@
+{
+  "name": "authentication-fe",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.3.5",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@klaytn/kaikas-web3-provider": "^1.0.3",
+    "@klaytn/web3modal": "^1.1.0",
+    "framer-motion": "^7.5.2",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "web3": "^1.8.0",
+    "web3modal": "^1.9.9"
+  },
+  "devDependencies": {
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1"
+  }
+}

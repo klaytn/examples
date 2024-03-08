@@ -1,0 +1,20 @@
+{
+  "name": "feedelegation",
+  "version": "1.0.0",
+  "description": "Steps to run the application\r `cd feedelegation`",
+  "scripts": {
+    "start": "concurrently \"yarn workspace feedelegation-be start\" \"yarn workspace feedelegation-fe dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "feedelegation-be",
+    "feedelegation-fe"
+  ],
+  "dependencies": {
+    "concurrently": "^7.5.0",
+    "workspaces": "^0.1.0"
+  }
+}
