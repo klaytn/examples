@@ -1,0 +1,34 @@
+{
+  "name": "klayswap-test-dapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "next build && next export && npx thirdweb@latest upload out"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@thirdweb-dev/react": "^4",
+    "@thirdweb-dev/sdk": "^4",
+    "ethers": "5",
+    "framer-motion": "^10.12.2",
+    "next": "^13",
+    "react": "^18.2",
+    "react-dom": "^18.2",
+    "typescript": "5.0.4"
+
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.11",
+    "@types/react": "^18",
+    "eslint": "^8.29.0",
+    "eslint-config-next": "^13",
+    "typescript": "^4.9.4"
+  }
+}

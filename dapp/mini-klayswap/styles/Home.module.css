@@ -1,0 +1,55 @@
+.swapInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.tokenInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.tokenInfo div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.swapInputContainer input {
+  background-color: #111;
+  border: 1px solid #f3f3f3;
+  border-radius: 15px;
+  padding: 10px 20px;
+}
+
+.swapCard {
+  position: relative;
+}
+
+.switchButton {
+  margin-left: -110px;
+  margin-top: -10px;
+}
+
+
+/* 
+.swapInputContainer div {
+  
+}
+
+.swapInput1 {
+  margin-bottom: 40px;
+}
+
+
+.swapInput2 {
+  margin-top: 40px;
+}
+  */
