@@ -183,7 +183,7 @@ const valueTransferRoleBasedWithFeeDelgation = async () => {
     };
 
     let pubkey = keyRingData._address;
-    let feePayerPubKey = "<feepayer public key>",
+    let feePayerPubKey = "";
 
     const senderAddress = pubkey;
     const recipientAddress = pubkey;
