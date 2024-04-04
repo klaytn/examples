@@ -7,6 +7,8 @@ This example uses the following contract details:
 - Address: [0x569A8e0e23e8f338752B568b721075574426f693](https://baobab.klaytnfinder.io/account/0x569A8e0e23e8f338752B568b721075574426f693)
 - Start Block: 150554742
 
+Contract code is available in [contracts/MyToken.sol](contracts/MyToken.sol)
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
