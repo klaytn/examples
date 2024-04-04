@@ -64,6 +64,17 @@ pnpm run deploy
 
 A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs/name/erc20-subgraph**
 
+Here's an example query:
+
+```graphql
+{
+  users {
+    id
+    n_transfers
+  }
+}
+```
+
 > :warning: **QUERY** URL, not Admin URL!
 
 ## Subgraph your own contract
