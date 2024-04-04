@@ -1,5 +1,5 @@
 import { BigInt, log } from "@graphprotocol/graph-ts";
-import { MyToken, Transfer } from "./types/MySubgraph/MyToken";
+import { Transfer } from "./types/MySubgraph/MyToken";
 import { User } from "./types/schema";
 
 export function handleTransfer(event: Transfer): void {

@@ -39,7 +39,7 @@ pnpm run codegen
 pnpm run build
 ```
 
-> Rerun when `src/*` changes
+> Rerun when [src/*](src/) changes
 
 ### 4. Create a subgraph on the graph node
 
@@ -60,7 +60,7 @@ pnpm run deploy
 
 ### 6. Query the subgraph
 
-A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs/name/example-subgraph**
+A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs/name/erc20-subgraph**
 
 > :warning: **QUERY** URL, not Admin URL!
 
