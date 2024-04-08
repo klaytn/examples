@@ -7,6 +7,8 @@ This example uses the following contract details:
 - Address: [0x569A8e0e23e8f338752B568b721075574426f693](https://baobab.klaytnfinder.io/account/0x569A8e0e23e8f338752B568b721075574426f693)
 - Start Block: 150554742
 
+Contract code is available in [contracts/MyToken.sol](contracts/MyToken.sol)
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
@@ -44,7 +46,7 @@ pnpm run codegen
 pnpm run build
 ```
 
-> Rerun when `src/*` changes
+> Rerun when [src/*](src/) changes
 
 ### 4. Create a subgraph on the graph node
 
@@ -65,7 +67,18 @@ pnpm run deploy
 
 ### 6. Query the subgraph
 
-A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs/name/example-subgraph**
+A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs/name/erc20-subgraph**
+
+Here's an example query:
+
+```graphql
+{
+  users {
+    id
+    n_transfers
+  }
+}
+```
 
 > :warning: **QUERY** URL, not Admin URL!
 
