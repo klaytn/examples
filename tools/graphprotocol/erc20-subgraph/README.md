@@ -21,6 +21,11 @@ This example uses the following contract details:
 
 ## Run this example
 
+This example uses the following contract details:
+
+- Address: [0x569A8e0e23e8f338752B568b721075574426f693](https://baobab.klaytnfinder.io/account/0x569A8e0e23e8f338752B568b721075574426f693)
+- Start Block: 150554742
+
 ### 1. Install dependencies
 
 ```
@@ -44,7 +49,7 @@ pnpm run build
 ### 4. Create a subgraph on the graph node
 
 ```
-export GRAPH_ADMIN_URL=<Graph Node Admin URL>
+export GRAPH_ADMIN_URL=<GRAPH_NODE_ADMIN_URL>
 pnpm run create
 ```
 
@@ -53,8 +58,8 @@ pnpm run create
 ### 5. Deploy the subgraph
 
 ```
-export GRAPH_ADMIN_URL=<Graph Node Admin URL>
-export IPFS_ADMIN_URL=<IPFS Node Admin URL>
+export GRAPH_ADMIN_URL=<GRAPH_NODE_ADMIN_URL>
+export IPFS_ADMIN_URL=<IPFS_NODE_ADMIN_URL>
 pnpm run deploy
 ```
 
@@ -67,6 +72,8 @@ A GraphQL UI & API should be exposed at **&lt;Graph Node Query URL&gt;/subgraphs
 ## Subgraph your own contract
 
 ### 1. Deploy your own ERC20 contract
+
+Deploy the contract located in `contracts/KIP7.sol` using [RemixIDE](https://remix.ethereum.org) onto **Klaytn BAOBAB network**.
 
 Paste the ABI JSON into [abis/&lt;Contract Name&gt;.json](abis/)
 
