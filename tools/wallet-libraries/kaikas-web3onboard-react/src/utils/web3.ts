@@ -1,23 +1,22 @@
-import { isError, type ErrorCode, type CodedEthersError } from "ethers";
+import { type ErrorCode, type CodedEthersError } from "ethers";
 
 import logger from "../logger";
 
-type ErrorHandler<K extends ErrorCode> = (e: CodedEthersError<K>) => string;
-
-type ErrorHandlers = {
-  [K in ErrorCode]?: ErrorHandler<K>;
+type ErrorHandlers<T extends ErrorCode> = {
+  [K in T]?: (e: CodedEthersError<K>) => string;
 };
 
-export function formatError(e: unknown, handlers: ErrorHandlers = {}) {
+export function formatError<T extends ErrorCode>(e: unknown, handlers: ErrorHandlers<T> = {}) {
   logger.error(e);
   let e_msg = "Internal error";
 
-  for (const _code in handlers) {
-    if (!Object.prototype.hasOwnProperty.call(handlers, _code)) continue;
-    const code = _code as ErrorCode;
-    const handler = handlers[code] as ErrorHandler<ErrorCode>;
-    if (isError(e, code)) {
-      e_msg = handler(e);
+  if (e instanceof Error) {
+    if ("code" in e) {
+      const code = e.code as T;
+      if (code in handlers) {
+        const handler = handlers[code]!;
+        e_msg = handler(e as CodedEthersError<T>);
+      }
     }
   }
 
