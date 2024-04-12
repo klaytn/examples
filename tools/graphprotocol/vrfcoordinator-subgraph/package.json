@@ -11,7 +11,8 @@
     "build-wast": "graph build -t wast subgraph.yaml",
     "codegen": "graph codegen --output-dir src/types/ subgraph.yaml",
     "create": "graph create --node $GRAPH_ADMIN_URL vrfcoordinator-subgraph",
-    "deploy": "graph deploy --node $GRAPH_ADMIN_URL --ipfs $IPFS_ADMIN_URL vrfcoordinator-subgraph subgraph.yaml"
+    "deploy": "graph deploy --node $GRAPH_ADMIN_URL --ipfs $IPFS_ADMIN_URL vrfcoordinator-subgraph subgraph.yaml",
+    "remove": "graph remove vrfcoordinator-subgraph --node $GRAPH_ADMIN_URL"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "0.69.1",
