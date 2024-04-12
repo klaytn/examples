@@ -1,0 +1,6 @@
+type RandomWordsFulfillment @entity {
+  id: ID!
+  requestedTime: BigInt!
+  fulfilledTime: BigInt
+  success: Boolean
+}
