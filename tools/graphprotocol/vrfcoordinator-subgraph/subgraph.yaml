@@ -1,0 +1,28 @@
+specVersion: 0.0.5
+description: 'example of a subgraph'
+repository: https://github.com/khoa-klaytn/vrfcoordinator-subgraph.git
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: VRFCoordinatorSubgraph
+    network: mainnet
+    source:
+      address: '0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499'
+      abi: VRFCoordinator
+      startBlock: 137420464
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - RandomWordsFulfillment
+      abis:
+        - name: VRFCoordinator
+          file: ./abis/VRFCoordinator.json
+      eventHandlers:
+        - event: RandomWordsFulfilled(indexed uint256,uint256,uint256,bool)
+          handler: handleRandomWordsFulfilled
+        - event: RandomWordsRequested(indexed bytes32,uint256,uint256,indexed uint64,uint32,uint32,indexed address,bool)
+          handler: handleRandomWordsRequested
