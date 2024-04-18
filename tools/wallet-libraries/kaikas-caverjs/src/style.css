@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-kaikas {
+    @apply min-h-kaikas min-w-kaikas  text-white bg-kaikas-primary rounded-kaikas;
+  }
+}
