@@ -1,4 +1,4 @@
-# [Kaikas](https://docs.kaikas.io) + [ethers.js](https://docs.ethers.io/v6)
+# [Kaikas](https://docs.kaikas.io) + [caver-js](https://github.com/klaytn/caver-js)
 
 - Using [Vite](https://vitejs.dev)
 

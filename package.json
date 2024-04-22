@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"caver-js": "^1.11.0"
+	}
+}

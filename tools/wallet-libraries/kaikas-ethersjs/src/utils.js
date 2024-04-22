@@ -1,7 +1,7 @@
-import env from "./env.js";
+import logger from "./logger";
 
 export function formatError(e, handlers = {}) {
-  console.error(e);
+  logger.error(e);
   let e_msg = "Internal error";
 
   if (e instanceof Error) {
@@ -14,14 +14,6 @@ export function formatError(e, handlers = {}) {
     }
   }
 
-  console.error(e_msg);
+  logger.error(e_msg);
   return e_msg;
-}
-
-export function setTxHash(id, tx_hash) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.href = `${env.EXPLORER_URL}/tx/${tx_hash}`;
-    el.textContent = tx_hash;
-  }
 }
