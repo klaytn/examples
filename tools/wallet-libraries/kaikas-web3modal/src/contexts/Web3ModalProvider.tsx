@@ -4,9 +4,14 @@ import { PropsWithChildren } from "react";
 import { HttpTransport } from "viem";
 import { State, WagmiProvider, cookieStorage, createConfig, createStorage, http } from "wagmi";
 import { klaytn, klaytnBaobab } from "wagmi/chains";
-import { injected } from "wagmi/connectors";
+import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 
 import kaikas_png from "../../public/kaikas.png";
+
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID!;
+const projectIconUrl = process.env.NEXT_PUBLIC_PROJECT_ICON_URL!;
+const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL!;
+const chain_id = process.env.NEXT_PUBLIC_CHAIN_ID;
 
 const kaikas_connector = injected({
   target: {
@@ -21,7 +26,6 @@ const kaikas_connector = injected({
 });
 
 function WagmiConfig() {
-  const chain_id = process.env.NEXT_PUBLIC_CHAIN_ID;
   let chain;
   let transports = {} as Record<1001 | 8217, HttpTransport>;
   if (chain_id === "1001") {
@@ -33,7 +37,19 @@ function WagmiConfig() {
   }
   const wagmi_config = createConfig({
     chains: [chain],
-    connectors: [kaikas_connector],
+    connectors: [
+      kaikas_connector,
+      coinbaseWallet({ appName: "Kaikas + Web3Modal" }),
+      walletConnect({
+        projectId,
+        metadata: {
+          name: "Kaikas + Web3Modal",
+          description: "Kaikas + Web3Modal",
+          icons: [projectIconUrl],
+          url: projectUrl,
+        },
+      }),
+    ],
     storage: createStorage({
       storage: cookieStorage,
     }),
@@ -43,7 +59,6 @@ function WagmiConfig() {
 }
 const wagmi_config = WagmiConfig();
 
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID!;
 createWeb3Modal({
   wagmiConfig: wagmi_config,
   projectId,
