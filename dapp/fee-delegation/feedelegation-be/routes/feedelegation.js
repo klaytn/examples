@@ -10,28 +10,21 @@ router.post('/', async (req, res) => {
 
   try {
     if (req.body == "" && req.method != "POST") return;
-
     const { deployTx } = req.body;
-
-    // Feepayer keyring generation
+    // require key and address isn't falsy.
     if (!feePayerPrivateKey) throw new Error("configure fee payer private key");
-
     if (!feePayerAddress) throw new Error("fee payer address: null");
-
+    // keyring generation
     const feePayerKeyring = caver.wallet.keyring.create(feePayerAddress, feePayerPrivateKey)
     caver.wallet.add(feePayerKeyring)
-
+    // decoding deployTx
     const { deployTxDecoded } = caver.transaction.decode(deployTx);
     if (deployTxDecoded.type != "TxTypeSmartContractDeploy") return
-
     // Signs the transaction as a fee payer
     await caver.wallet.signAsFeePayer(feePayerKeyring.address, deployTxDecoded);
-
     // Transaction execution
     const receipt = await caver.rpc.klay.sendRawTransaction(deployTxDecoded);
-
     return res.status(200).json({ success: true, contractAddress: receipt.contractAddress });
-
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
